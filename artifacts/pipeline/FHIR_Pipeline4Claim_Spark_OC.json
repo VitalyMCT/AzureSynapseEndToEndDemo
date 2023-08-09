@@ -490,7 +490,7 @@
 			},
 			"ServerName": {
 				"type": "string",
-				"defaultValue": "vitalyhealthcareworkspace.sql.azuresynapse.net"
+				"defaultValue": "vitalyhealthcareworkspace"
 			},
 			"SparkPoolName": {
 				"type": "string",
