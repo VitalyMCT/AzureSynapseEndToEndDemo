@@ -43,13 +43,13 @@
 						},
 						"type": "BigDataPoolReference"
 					},
-					"executorSize": "Small",
+					"executorSize": "Medium",
 					"conf": {
 						"spark.dynamicAllocation.enabled": null,
 						"spark.dynamicAllocation.minExecutors": null,
 						"spark.dynamicAllocation.maxExecutors": null
 					},
-					"driverSize": "Small",
+					"driverSize": "Medium",
 					"numExecutors": null
 				}
 			},
@@ -101,11 +101,13 @@
 						},
 						"type": "BigDataPoolReference"
 					},
+					"executorSize": "Medium",
 					"conf": {
 						"spark.dynamicAllocation.enabled": null,
 						"spark.dynamicAllocation.minExecutors": null,
 						"spark.dynamicAllocation.maxExecutors": null
 					},
+					"driverSize": "Medium",
 					"numExecutors": null
 				}
 			},
