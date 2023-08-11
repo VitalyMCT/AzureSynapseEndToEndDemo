@@ -1,0 +1,6 @@
+{
+	"name": "IntegrationRuntimeForOnPremSQLServer",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
