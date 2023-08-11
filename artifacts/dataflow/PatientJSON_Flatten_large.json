@@ -47,6 +47,9 @@
 				},
 				{
 					"name": "PatientAddressFlatten"
+				},
+				{
+					"name": "filter1"
 				}
 			],
 			"scriptLines": [
@@ -117,6 +120,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: false) ~> PatientAddressFlatten",
+				"PatientAddressFlatten filter(ERROR_FUNCTION('')) ~> filter1",
 				"PatientIdentifierFlatten sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
@@ -135,7 +139,7 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sinkPatientExtension",
-				"PatientAddressFlatten sink(allowSchemaDrift: true,",
+				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     truncate: true,",

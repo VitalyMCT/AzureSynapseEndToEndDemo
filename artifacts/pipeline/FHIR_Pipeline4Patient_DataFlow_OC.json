@@ -60,6 +60,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Notebook1",
+						"dependencyConditions": [
+							"Completed"
+						]
 					}
 				],
 				"policy": {
@@ -156,6 +162,9 @@
 							},
 							"wildcardFileName": "*.parquet",
 							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "ParquetReadSettings"
 						}
 					},
 					"sink": {
@@ -328,6 +337,9 @@
 							},
 							"wildcardFileName": "*.parquet",
 							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "ParquetReadSettings"
 						}
 					},
 					"sink": {
@@ -589,6 +601,38 @@
 							"text": "IF OBJECT_ID('fhir.PatientAddress') IS NOT NULL\r\nBEGIN\r\n    DROP TABLE [fhir].[PatientAddress]\r\nEND\r\n\r\n\r\nCREATE TABLE [fhir].[PatientAddress]\r\n( \r\n\t[id] [nvarchar](64)  NULL,\r\n\t[address.city] [nvarchar](50)  NULL,\r\n\t[address.country] [nvarchar](50)  NULL,\r\n\t[address.extension.extension.url] [nvarchar](50)  NULL,\r\n\t[address.extension.extension.valueDecimal] [float]  NULL,\r\n\t[address.extension.url] [nvarchar](1000)  NULL,\r\n\t[address.postalCode] [nvarchar](50)  NULL,\r\n\t[address.state] [nvarchar](50)  NULL\r\n)\r\nWITH\r\n(\r\n\tDISTRIBUTION = ROUND_ROBIN,\r\n\tHEAP\r\n)\r\n\r\nIF OBJECT_ID('fhir.PatientIdentifier') IS NOT NULL\r\nBEGIN\r\n    DROP TABLE [fhir].[PatientIdentifier]\r\nEND\r\n\r\nCREATE TABLE [fhir].[PatientIdentifier]\r\n( \r\n\t[patient_id] [nvarchar](64)  NULL,\r\n\t[birthDate] [nvarchar](200)  NULL,\r\n\t[deceasedDateTime] [nvarchar](200)  NULL,\r\n\t[gender] [nvarchar](50)  NULL,\r\n\t[text] [nvarchar](1000)  NULL,\r\n\t[multipleBirthBoolean] [bit]  NULL,\r\n\t[multipleBirthInteger] [bigint]  NULL,\r\n\t[resourceType] [nvarchar](100)  NULL,\r\n\t[div] [nvarchar](max)  NULL,\r\n\t[status] [nvarchar](500)  NULL,\r\n\t[identifier.system] [nvarchar](2000)  NULL,\r\n\t[identifier.type.coding.code] [nvarchar](500)  NULL,\r\n\t[identifier.type.coding.display] [nvarchar](1000)  NULL,\r\n\t[identifier.type.coding.system] [nvarchar](1000)  NULL,\r\n\t[identifier.type.text] [nvarchar](1000)  NULL,\r\n\t[identifier.value] [nvarchar](640)  NULL\r\n)\r\nWITH\r\n(\r\n\tDISTRIBUTION = ROUND_ROBIN,\r\n\tHEAP\r\n)"
 						}
 					]
+				}
+			},
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					}
 				}
 			}
 		],
